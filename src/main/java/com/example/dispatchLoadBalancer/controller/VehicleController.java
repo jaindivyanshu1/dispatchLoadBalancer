@@ -1,7 +1,7 @@
 package com.example.dispatchLoadBalancer.controller;
 
-import com.example.dispatchLoadBalancer.dto.OrderDTO;
-import com.example.dispatchLoadBalancer.service.OrderService;
+import com.example.dispatchLoadBalancer.dto.VehicleDTO;
+import com.example.dispatchLoadBalancer.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/api/dispatchLoadBalance/orders")
-public class OrderController {
+@RequestMapping("/api/dispatchLoadBalancer/vehicles")
+public class VehicleController {
 
     @Autowired
-    private OrderService orderService;
+    private VehicleService vehicleService;
 
     @PostMapping
-    public ResponseEntity<?> createOrders(@RequestBody List<OrderDTO> orders) {
-        orderService.saveOrders(orders);
+    public ResponseEntity<?> createVehicle(@RequestBody List<VehicleDTO> vehicles) {
+        vehicleService.saveVehicles(vehicles);
         return ResponseEntity.ok().body(
-                new ApiResponse("Delivery orders accepted", "success")
+                new ApiResponse("Vehicle details accepted", "success")
         );
     }
 

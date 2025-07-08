@@ -4,8 +4,6 @@ import java.util.List;
 
 public class DispatchPlanDTO {
 
-    private Long planId;
-
     private String vehicleId;
     private Double totalLoad;
     private Double totalDistance;
@@ -14,25 +12,15 @@ public class DispatchPlanDTO {
     public DispatchPlanDTO(){}
 
     public DispatchPlanDTO(
-            Long planId,
             String vehicleId,
             Double totalDistance,
             Double totalLoad,
             List<OrderDTO> assignedOrders
     ) {
-        this.planId = planId;
         this.vehicleId = vehicleId;
         this.totalDistance = totalDistance;
         this.totalLoad = totalLoad;
         this.assignedOrders = assignedOrders;
-    }
-
-    //planId
-    public Long getPlanId() {
-        return planId;
-    }
-    public void setPlanId(Long planId) {
-        this.planId = planId;
     }
 
     //vehicleId

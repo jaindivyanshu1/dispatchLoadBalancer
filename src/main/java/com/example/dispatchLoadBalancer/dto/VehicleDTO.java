@@ -1,12 +1,27 @@
 package com.example.dispatchLoadBalancer.dto;
 
+import jakarta.validation.constraints.*;
+
 public class VehicleDTO {
 
+    @NotBlank(message = "Vehicle ID is required")
     private String vehicleId;
 
+    @NotNull(message = "Capacity is required")
+    @Positive(message = "Capacity must be greater than zero")
     private Double capacity;
+
+    @NotNull(message = "Current latitude is required")
+    @DecimalMin(value = "-90.0", message = "Latitude must be >= -90")
+    @DecimalMax(value = "90.0", message = "Latitude must be <= 90")
     private Double currentLatitude;
+
+    @NotNull(message = "Current longitude is required")
+    @DecimalMin(value = "-180.0", message = "Longitude must be >= -180")
+    @DecimalMax(value = "180.0", message = "Longitude must be <= 180")
     private Double currentLongitude;
+
+    @NotBlank(message = "Current address is required")
     private String currentAddress;
 
     public VehicleDTO(){}

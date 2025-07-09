@@ -1,13 +1,37 @@
 package com.example.dispatchLoadBalancer.dto;
 
+import jakarta.validation.constraints.*;
+
+
 public class OrderDTO {
 
+    @NotBlank(message = "Order ID must not be blank")
     private String orderId;
+
+    @NotNull(message = "Latitude is required")
+    @DecimalMin(value = "-90.0", inclusive = true, message = "Latitude must be >= -90")
+    @DecimalMax(value = "90.0", inclusive = true, message = "Latitude must be <= 90")
     private Double latitude;
+
+    @NotNull(message = "Longitude is required")
+    @DecimalMin(value = "-180.0", inclusive = true, message = "Longitude must be >= -180")
+    @DecimalMax(value = "180.0", inclusive = true, message = "Longitude must be <= 180")
     private Double longitude;
+
+    @NotBlank(message = "Address must not be blank")
     private String address;
+
+    @NotNull(message = "Package weight is required")
+    @Positive(message = "Package weight must be a positive number")
     private Double packageWeight;
+
+    @NotBlank(message = "Priority must not be blank")
+    @Pattern(
+            regexp = "LOW|MEDIUM|HIGH",
+            message = "Priority must be one of: LOW, MEDIUM, HIGH"
+    )
     private String priority;
+
 
     public OrderDTO() {
     }
@@ -75,6 +99,6 @@ public class OrderDTO {
     public void setPriority(String priority) {
         this.priority = priority;
     }
-    
+
 }
 

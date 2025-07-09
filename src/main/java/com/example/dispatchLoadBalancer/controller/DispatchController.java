@@ -18,7 +18,7 @@ public class DispatchController {
     private DispatchService dispatchService;
 
     @GetMapping
-    public ResponseEntity<?> getDispatchPlan() {
+    public ResponseEntity<List<DispatchPlanDTO>> getDispatchPlan() {
         List<DispatchPlanDTO> plan = dispatchService.generateDispatchPlan();
         return ResponseEntity.ok().body(plan);
     }

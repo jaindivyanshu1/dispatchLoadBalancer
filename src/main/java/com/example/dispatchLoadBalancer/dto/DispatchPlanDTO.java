@@ -1,13 +1,25 @@
 package com.example.dispatchLoadBalancer.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
 import java.util.List;
 
 public class DispatchPlanDTO {
 
+    @NotBlank(message = "Vehicle ID is required")
     private String vehicleId;
+
+    @NotNull(message = "Total load is required")
+    @PositiveOrZero(message = "Total load must be 0 or more")
     private Double totalLoad;
+
+    @NotBlank(message = "Total distance is required")
     private Double totalDistance;
-    private List<OrderDTO> assignedOrders;
+
+    @NotNull(message = "Assigned orders list is required")
+    @Size(min = 1, message = "At least one assigned order is required")
+    private List<@Valid OrderDTO> assignedOrders;
 
     public DispatchPlanDTO(){}
 
